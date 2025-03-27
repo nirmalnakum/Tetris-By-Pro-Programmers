@@ -1,76 +1,99 @@
-# Tetris Game By Pro Programmers  
+# Tetris Game in C++
 
-This is a **console-based Tetris game** implemented in **C++**. The game follows the classic Tetris mechanics where players stack tetrominoes to complete full lines and score points. The difficulty increases as the level progresses, making the game more challenging over time.
+This is a simple implementation of the classic Tetris game written in C++ for the console.
 
-## Members  
+## Team Members
 
-- **Nirmal Nakum** => 202401022  
-- **Ayush Donga** => 202401052  
-- **Rajveersinh Gohil** => 202401057  
+* Nirmal Nakum - 202401022
+* Ayush Donga - 202401052
+* Rajveersinh Gohil - 202401057
 
-## Requirements  
+## Game Controls
 
-- A **C++ compiler** (e.g., GCC, MSVC)  
-- **Windows operating system** (due to usage of `conio.h` and `windows.h`)  
+* **Left Arrow Key:** Move the falling tetromino to the left.
+* **Right Arrow Key:** Move the falling tetromino to the right.
+* **Down Arrow Key:** Soft drop - move the falling tetromino down one row.
+* **Up Arrow Key:** Rotate the falling tetromino clockwise.
+* **Spacebar:** Hard drop - instantly drop the falling tetromino to the lowest possible position.
+* **ESC Key:** Quit the game.
+* **y (or Y):** When the game ends, press 'y' to play again.
+* **n (or N):** When the game ends, press 'n' to exit the application.
 
-## Files  
+## Game Description
 
-- Game code: [`tetris.cpp`](./tetris.cpp)  
+The goal of Tetris is to prevent the accumulating blocks from reaching the top of the playing field. You achieve this by strategically rotating and positioning falling blocks (tetrominoes) to create solid horizontal lines. When a line is completed, it disappears, and you earn points.
 
-## How to Play  
+* **Tetrominoes:** The game features seven different tetromino shapes (I, O, T, L, J, S, Z) that fall randomly from the top of the screen.
+* **Gameplay:** You can move the falling tetrominoes left, right, and rotate them. You can also make them fall faster using the down arrow key (soft drop) or instantly drop them using the spacebar (hard drop).
+* **Scoring:** You earn points for each line you clear. Clearing multiple lines simultaneously awards more points.
+* **Level:** The game has increasing levels of difficulty. As you clear more lines, the game level increases, and the tetrominoes fall at a faster speed.
+* **Game Over:** The game ends when a new tetromino cannot be placed on the board because the top row is already occupied.
+* **High Score:** The game keeps track of the highest score achieved during the current session.
+* **Restart:** After a game over, you have the option to restart the game.
 
-1. **Controls**:  
-   - **← Left Arrow** → Move the tetromino left  
-   - **→ Right Arrow** → Move the tetromino right  
-   - **↓ Down Arrow** → Soft drop (move tetromino down faster)  
-   - **↑ Up Arrow** → Rotate the tetromino  
-   - **Spacebar** → Hard drop (instantly places the tetromino)  
-   - **ESC** → Quit the game  
+## Code Structure
 
-2. **Objective**:  
-   - Stack the falling tetrominoes to complete full lines.  
-   - When a line is fully filled, it disappears, and the score increases.  
-   - The game speed increases every time 5 lines are cleared.  
+The code is organized into the following main parts:
 
-3. **Game Over**:  
-   - If the tetrominoes stack to the top of the screen, the game ends.  
-   - The player is given an option to restart or exit.  
+* **Includes:** Includes necessary header files for input/output, vectors, random number generation, time, and Windows-specific console functions.
+* **Constants:** Defines game constants like `WIDTH`, `HEIGHT`, and `NUM_TETROMINOS`.
+* **Enums:** Defines the `TetrominoType` enum to represent the different tetromino shapes.
+* **`Tetromino` Class:**
+    * Represents a single tetromino.
+    * Stores its shape (as a 2D vector), x and y coordinates on the board.
+    * Provides a `getShape()` method to define the shape of each tetromino type.
+* **`gotoxy()` Function:** A Windows-specific function to move the console cursor to a specific position.
+* **`hideCursor()` and `showCursor()` Functions:** Windows-specific functions to hide and show the console cursor.
+* **`TetrisGame` Class:**
+    * Represents the main game logic.
+    * Contains the game board (a 2D vector), the current falling tetromino, score, level, lines cleared, falling speed, high score, and game over flag.
+    * Includes methods for:
+        * `spawnTetromino()`: Creates a new random tetromino.
+        * `checkCollision()`: Checks if the current tetromino collides with the board or boundaries.
+        * `placeTetromino()`: Places the current tetromino on the board.
+        * `rotateTetromino()`: Rotates the current tetromino.
+        * `moveTetrominoLeft()`, `moveTetrominoRight()`, `moveTetrominoDown()`: Moves the current tetromino.
+        * `softDrop()`, `hardDrop()`: Controls the falling speed.
+        * `clearLines()`: Checks for and clears full horizontal lines.
+        * `display()`: Draws the game board and information on the console.
+        * `isGameOver()`: Checks if the game has ended.
+        * `handleInput()`: Reads and processes user input.
+        * `run()`: The main game loop.
+* **`main()` Function:**
+    * Hides the cursor.
+    * Creates an instance of the `TetrisGame` class.
+    * Starts the game loop.
+    * Shows the cursor after the game ends.
+ 
+## How to Compile and Run
 
-## Features  
+1.  **Save the code:** Save the provided C++ code as a `.cpp` file (e.g., `tetris.cpp`).
+2.  **Compile:** Open a command prompt or terminal and use a C++ compiler (like g++) to compile the code. Make sure you have a C++ compiler installed on your system.
 
-✅ **Classic Tetris Mechanics** – Rotate, move, and drop tetrominoes.  
-✅ **Line Clearing** – Full rows disappear, increasing the score.  
-✅ **Level & Speed Increase** – The game speeds up as more lines are cleared.  
-✅ **Restart & High Score Tracking** – Save your best score and try again.  
-✅ **Console-Based Interface** – Runs directly in the terminal.  
+    ```bash
+    g++ tetris.cpp -o tetris
+    ```
 
-## Code Overview  
+    If you encounter issues related to `windows.h` and `conio.h`, ensure you are compiling on a Windows system or have a compatible environment. These headers are specific to Windows.
 
-### Classes and Methods  
+3.  **Run:** Execute the compiled program.
 
-- **`Tetromino` class** – Handles individual tetromino shapes and rotations.  
-- **`TetrisGame` class** – Manages the game logic, including:  
-  - `spawnTetromino()` → Generates a random tetromino.  
-  - `checkCollision()` → Checks if a tetromino is hitting a wall or another block.  
-  - `placeTetromino()` → Places a tetromino when it reaches the bottom.  
-  - `clearLines()` → Removes completed lines and increases the score.  
-  - `moveTetrominoLeft()`, `moveTetrominoRight()`, `moveTetrominoDown()` → Controls movement.  
-  - `rotateTetromino()` → Rotates the tetromino.  
-  - `display()` → Renders the game board.  
-  - `handleInput()` → Captures user input (arrow keys, spacebar, etc.).  
-  - `run()` → Runs the game loop.  
+    ```bash
+    ./tetris
+    ```
 
-### Special Functions  
+    On Windows, you might need to run:
 
-- **`gotoxy(x, y)`** → Moves the cursor to a specific position in the console.  
-- **`hideCursor()` / `showCursor()`** → Hides/shows the cursor for a clean interface.  
+    ```bash
+    tetris.exe
+    ```
 
-## How to Compile & Run  
+## Dependencies
 
-### **Windows (MSVC or MinGW)**  
+This game relies on the following:
 
-1. Open **Command Prompt** or **PowerShell**.  
-2. Navigate to the directory containing `tetris.cpp`.  
-3. Compile the code using **GCC**:  
-   ```bash
-   g++ tetris.cpp -o TetrisGame
+* **Standard C++ Library:** For basic functionalities like input/output, vectors, and random number generation.
+* **`windows.h`:** For Windows-specific functions like `COORD`, `SetConsoleCursorPosition`, `GetStdHandle`, and `CONSOLE_CURSOR_INFO`. This header is required for cursor manipulation and the `gotoxy()` function.
+* **`conio.h`:** For console input/output functions like `_kbhit()` and `_getch()`, which allow non-blocking keyboard input.
+
+**Note:** Due to the use of `windows.h` and `conio.h`, this code is primarily intended for compilation and execution on Windows systems using a compatible compiler. To make it cross-platform, you would need to replace these Windows-specific functions with platform-independent alternatives.
