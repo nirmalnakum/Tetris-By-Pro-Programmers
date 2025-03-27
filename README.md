@@ -8,6 +8,9 @@ This is a simple implementation of the classic Tetris game written in C++ for th
 * Ayush Donga - 202401052
 * Rajveersinh Gohil - 202401057
 
+ ## Files
+game code :- [tetris.cpp](./tetris.cpp)
+
 ## Game Controls
 
 * **Left Arrow Key:** Move the falling tetromino to the left.
