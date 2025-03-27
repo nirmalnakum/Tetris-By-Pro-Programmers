@@ -1,4 +1,4 @@
-# Tetris Game in C++
+# Tetris Game By Pro Programmers
 
 This is a simple implementation of the classic Tetris game written in C++ for the console.
 
