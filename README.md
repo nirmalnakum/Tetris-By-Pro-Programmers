@@ -9,12 +9,13 @@ This is a simple implementation of the classic Tetris game written in C++ for th
 * Rajveersinh Gohil - 202401057
 
  ## Files
-game code :- [tetris.cpp](./tetris.cpp)
+>> game code :- [tetris.cpp](./tetris.cpp)
+
 
 ## Demo Video of Game
 
-
 https://github.com/user-attachments/assets/b77abd94-ce59-4845-b8a0-fce5f6e07029
+
 
 ## Game Controls
 
